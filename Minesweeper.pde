@@ -21,7 +21,7 @@ void setup ()
         }
     }
     
-    setBombs(100);
+    setBombs(200);
 }
 
 public void setBombs(int count)
@@ -90,7 +90,26 @@ public class MSButton
     public void mousePressed () 
     {
         clicked = true;
-        //your code here
+        if(keyPressed == true){
+            marked = true;
+        } else if (bombs.contains(this)){
+            displayLosingMessage();
+        } else if (countBombs(r,c)>0){
+            String poo = "" + countBombs(r,c);
+            setLabel(poo);
+        }
+        if(isValid(r-1,c) && !buttons[r-1][c].isClicked())
+            buttons[r-1][c].mousePressed();
+
+        if(isValid(r+1,c) && !buttons[r+1][c].isClicked())
+            buttons[r+1][c].mousePressed();
+
+        if(isValid(r,c-1) && !buttons[r][c-1].isClicked())
+            buttons[r][c-1].mousePressed();
+
+        if(isValid(r,c+1) && !buttons[r][c+1].isClicked())
+            buttons[r][c+1].mousePressed();
+
     }
 
     public void draw () 
@@ -114,8 +133,11 @@ public class MSButton
     }
     public boolean isValid(int r, int c)
     {
-        if((r>=0 && r<20) && (c>=0 && c<20))
+        if((r>=0 && r<20) && (c>=0 && c<20)){
+            if(!bombs.contains(buttons[r][c])){
             return true;
+            }    
+        }
         return false;
     }
     public int countBombs(int row, int col)
