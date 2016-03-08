@@ -1,7 +1,7 @@
 
 
 import de.bezier.guido.*;
-int num_bombs = 50;
+int num_bombs = 10;
 int NUM_ROWS = 20;
 int NUM_COLS = 20;//Declare and initialize NUM_ROWS and NUM_COLS = 20
 private MSButton[][] buttons = new MSButton[NUM_ROWS][NUM_COLS]; //2d array of minesweeper buttons
@@ -143,7 +143,7 @@ public class MSButton
         else if(clicked)
             fill( 200 );
         else 
-            fill( 100 );
+            fill( 100,142,41 );
 
         rect(x, y, width, height);
         fill(0);
