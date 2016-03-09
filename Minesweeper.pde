@@ -1,11 +1,11 @@
 
 
 import de.bezier.guido.*;
-int num_bombs = 10;
+int num_bombs = 399;
 int NUM_ROWS = 20;
 int NUM_COLS = 20;//Declare and initialize NUM_ROWS and NUM_COLS = 20
-private MSButton[][] buttons = new MSButton[NUM_ROWS][NUM_COLS]; //2d array of minesweeper buttons
-private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
+public MSButton[][] buttons = new MSButton[NUM_ROWS][NUM_COLS]; //2d array of minesweeper buttons
+public ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
 void setup ()
 {
@@ -23,6 +23,27 @@ void setup ()
     }
     
     setBombs(num_bombs);
+}
+
+public void keyPressed(){
+    if(key=='r'){
+        for(int r=0; r<NUM_ROWS; r++){
+            for(int c=0; c<NUM_COLS; c++){
+                buttons[r][c].clicked=false;
+                buttons[r][c].marked=false;
+            }
+        }
+        ArrayList <MSButton> bombs = new ArrayList <MSButton>();
+        setup();
+    }
+    if(key=='1')
+        num_bombs=10;
+    if(key=='2')
+        num_bombs=40;
+    if(key=='3')
+        num_bombs=100;
+    if(key=='4')
+        num_bombs=399;
 }
 
 public void setBombs(int count)
@@ -69,6 +90,9 @@ public void displayLosingMessage()
     buttons[9][11].setLabel("O");
     buttons[9][12].setLabel("S");
     buttons[9][13].setLabel("E");
+    for(int i=0; i<bombs.size(); i++){
+        bombs.get(i).click();
+    }
 }
 public void displayWinningMessage()
 {
@@ -103,6 +127,10 @@ public class MSButton
     {
         return marked;
     }
+    public void click(){
+        clicked=true;
+    }
+
     public boolean isClicked()
     {
         return clicked;
