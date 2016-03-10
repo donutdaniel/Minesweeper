@@ -1,7 +1,7 @@
 
 
 import de.bezier.guido.*;
-int num_bombs = 399;
+int num_bombs = 40;
 int NUM_ROWS = 20;
 int NUM_COLS = 20;//Declare and initialize NUM_ROWS and NUM_COLS = 20
 public MSButton[][] buttons = new MSButton[NUM_ROWS][NUM_COLS]; //2d array of minesweeper buttons
@@ -26,24 +26,46 @@ void setup ()
 }
 
 public void keyPressed(){
-    if(key=='r'){
+    if(key=='1'){
+        num_bombs=10;
         for(int r=0; r<NUM_ROWS; r++){
             for(int c=0; c<NUM_COLS; c++){
-                buttons[r][c].clicked=false;
-                buttons[r][c].marked=false;
+                buttons[r][c].reset();
             }
         }
         ArrayList <MSButton> bombs = new ArrayList <MSButton>();
         setup();
     }
-    if(key=='1')
-        num_bombs=10;
-    if(key=='2')
+    if(key=='2'){
         num_bombs=40;
-    if(key=='3')
+        for(int r=0; r<NUM_ROWS; r++){
+            for(int c=0; c<NUM_COLS; c++){
+                buttons[r][c].reset();
+            }
+        }
+        ArrayList <MSButton> bombs = new ArrayList <MSButton>();
+        setup();
+    }
+    if(key=='3'){
         num_bombs=100;
-    if(key=='4')
+        for(int r=0; r<NUM_ROWS; r++){
+            for(int c=0; c<NUM_COLS; c++){
+                buttons[r][c].reset();
+            }
+        }
+        ArrayList <MSButton> bombs = new ArrayList <MSButton>();
+        setup();
+    }
+    if(key=='4'){
         num_bombs=399;
+        for(int r=0; r<NUM_ROWS; r++){
+            for(int c=0; c<NUM_COLS; c++){
+                buttons[r][c].reset();
+            }
+        }
+        ArrayList <MSButton> bombs = new ArrayList <MSButton>();
+        setup();
+    }
 }
 
 public void setBombs(int count)
@@ -129,6 +151,11 @@ public class MSButton
     }
     public void click(){
         clicked=true;
+    }
+
+    public void reset(){
+        clicked=false;
+        marked=false;
     }
 
     public boolean isClicked()
